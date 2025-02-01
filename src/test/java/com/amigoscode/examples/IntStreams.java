@@ -36,5 +36,8 @@ public class IntStreams {
 
     @Test
     public void intStreamIterate()  {
+        IntStream.iterate(0, value -> value + 1)
+                .limit(11)
+                .forEach(System.out::println);
     }
 }
