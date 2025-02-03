@@ -7,9 +7,9 @@ import com.amigoscode.mockdata.MockData;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 
 public class TransformationsMapAndReduce {
 
@@ -25,7 +25,7 @@ public class TransformationsMapAndReduce {
         List<PersonDTO> dtos = people.stream()
                 .filter(person -> person.getAge() > 28)
                 .map(PersonDTO::map)
-                .collect(Collectors.toList());
+                .toList();
 
         dtos.forEach(System.out::println);
     }
@@ -43,6 +43,10 @@ public class TransformationsMapAndReduce {
     @Test
     public void reduce() {
         int[] integers = {1, 2, 3, 4, 99, 100, 121, 1302, 199};
+        int sum = Arrays.stream(integers).reduce(0, Integer::sum);
+        int sub = Arrays.stream(integers).reduce(0, (a,b) -> a - b);
+        System.out.println(sum);
+        System.out.println(sub);
     }
 }
 
