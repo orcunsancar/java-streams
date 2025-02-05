@@ -12,6 +12,11 @@ public class StatisticsWithStreams {
     @Test
     public void count() throws Exception {
         List<Car> cars = MockData.getCars();
+        long count = cars.stream()
+                .filter(car -> car.getMake().equalsIgnoreCase("Ford"))
+                .filter(car -> car.getYear() > 2010)
+                .count();
+        System.out.println(count);
     }
 
     @Test
