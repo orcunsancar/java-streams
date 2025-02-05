@@ -5,6 +5,7 @@ import com.amigoscode.beans.Car;
 import com.amigoscode.mockdata.MockData;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class StatisticsWithStreams {
@@ -42,11 +43,20 @@ public class StatisticsWithStreams {
     @Test
     public void average() throws Exception {
         List<Car> cars = MockData.getCars();
+        double average = cars.stream()
+                .mapToDouble(Car::getPrice)
+                .average()
+                .orElse(0);
+        System.out.println(average);
     }
 
     @Test
     public void sum() throws Exception {
         List<Car> cars = MockData.getCars();
+        double sum = cars.stream()
+                .mapToDouble(Car::getPrice)
+                .sum();
+        System.out.println(BigDecimal.valueOf(sum));
     }
 
     @Test
