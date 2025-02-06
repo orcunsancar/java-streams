@@ -34,6 +34,16 @@ public class Sorting {
     @Test
     public void sortingSteamOfObjets() throws IOException {
         List<Person> people = MockData.getPeople();
+
+        Comparator<Person> comparing = Comparator
+                .comparing(Person::getEmail)
+                .reversed()
+                .thenComparing(Person::getFirstName);
+
+        List<Person> sort = people.stream()
+                .sorted(comparing)
+                .toList();
+        sort.forEach(System.out::println);
     }
 
     @Test
